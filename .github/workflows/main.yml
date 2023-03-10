@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-release:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
@@ -33,12 +33,6 @@ jobs:
       with:
         name: hello-world
         path: dist
-  
-  release:
-    needs: build
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v3
 
     - name: Create Release
       uses: actions/create-release@v1
