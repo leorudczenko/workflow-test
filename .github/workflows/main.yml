@@ -35,6 +35,7 @@ jobs:
         path: dist
   
   release:
+    needs: build
     runs-on: windows-latest
     steps:
 
