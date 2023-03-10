@@ -1,4 +1,4 @@
-# pyqt_github_actions_test
+# workflow-test
 
 This is a test repository for GitHub actions, with use of Pyinstaller to create an executable.
 
