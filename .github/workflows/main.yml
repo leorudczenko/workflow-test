@@ -37,4 +37,5 @@ jobs:
         upload_url: ${{ steps.latest_release_info.outputs.upload_url }}
         asset_path: dist/hello-world.exe
         asset_name: hello-world.exe
+        asset_content_type: application
 
