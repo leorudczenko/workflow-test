@@ -8,4 +8,6 @@ The application is made using PyQt, consisting of a single window. In the window
 
 You can download the **Hello World** application [here](https://github.com/leorudczenko/workflow-test/releases/latest/download/hello-world.exe).
 
+_Note: When first running the application after download, it will take sometime to start. Please be patient._
+
 You can find the executable for the application in the latest release assets.
