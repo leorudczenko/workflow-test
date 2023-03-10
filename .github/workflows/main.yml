@@ -1,0 +1,62 @@
+name: Create executable using PyInstaller
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Create Anaconda Environment
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        activate-environment: tactool
+        environment-file: environment.yml
+        python-version: 3.11
+        auto-activate-base: false
+
+    - shell: bash -l {0}
+      run: |
+        conda env list
+        conda list
+
+    - name: Build with Pyinstaller
+      shell: bash -l {0}
+      run: pyinstaller --name=hello-world --windowed --paths=. --onefile app/main.py
+    
+    - name: Create Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: hello-world
+        path: dist
+  
+  release:
+    runs-on: windows-latest
+    steps:
+
+    - name: Create Release
+      uses: actions/create-release@v1
+      id: create_release
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+        body_path: changelog.md
+
+    - name: Add Artifact to Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: dist/hello-world.exe
+        asset_name: hello-world.exe
+        asset_content_type: application/zip
+
