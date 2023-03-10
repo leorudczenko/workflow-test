@@ -26,7 +26,7 @@ jobs:
     - name: Get Latest Release Info
       id: latest_release_info
       uses: jossef/action-latest-release-info@v1.2.1
-        env:
+      env:
         GITHUB_TOKEN: ${{ github.token }}
 
     - name: Add Asset to Release
