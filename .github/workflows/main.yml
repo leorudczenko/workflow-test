@@ -1,10 +1,6 @@
 name: Create executable using PyInstaller
 
 on:
-  workflow_run:
-    workflows: [Lint and run tests]
-    types:
-      - completed
   release:
     types:
       - released
