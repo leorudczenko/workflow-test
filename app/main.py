@@ -1,4 +1,5 @@
 import sys
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
     QApplication,
     QMainWindow,
@@ -10,11 +11,14 @@ from PyQt5.QtWidgets import (
 
 
 class HelloWorld(QApplication):
-    def __init__(self, args):
+    def __init__(self, args, testing_mode: bool = False):
         super().__init__(args)
         self.window = Window()
-        self.window.show()
-        sys.exit(self.exec())
+        if testing_mode:
+            self.window.setAttribute(Qt.WA_DontShowOnScreen, True)
+        else:
+            self.window.show()
+            sys.exit(self.exec())
 
 
 class Window(QMainWindow):
