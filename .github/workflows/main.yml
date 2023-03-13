@@ -4,7 +4,7 @@ on:
   workflow_run:
     workflows: [Lint and run tests]
     types:
-      -completed
+      - completed
   release:
     types:
       - released
