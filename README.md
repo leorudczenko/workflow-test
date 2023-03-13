@@ -11,3 +11,12 @@ You can download the **Hello World** application [here](https://github.com/leoru
 _Note: When first running the application after download, it will take sometime to start. Please be patient._
 
 You can find the executable for the application in the latest release assets.
+
+## Testing
+
+You can run the tests for the application by running the following:
+
+```bash
+export PYTHONPATH=.
+pytest -vs test/
+```
