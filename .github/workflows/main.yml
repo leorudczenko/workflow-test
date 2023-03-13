@@ -10,6 +10,7 @@ on:
       - released
 
 jobs:
+  if: ${{ github.event.workflow_run.conclusion == 'success' }}
   build:
     runs-on: windows-latest
     steps:
