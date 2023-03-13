@@ -26,6 +26,8 @@ jobs:
 
     - name: Test
       shell: bash -l {0}
-      run: pytest -vs test/
+      run: |
+        export PYTHONPATH=.
+        pytest -vs test/
 
 
