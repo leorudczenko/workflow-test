@@ -54,7 +54,7 @@ jobs:
         shell: bash -l {0}
         run: |
           pyinstaller --name=hello-world --windowed --paths=. --onefile app/main.py
-          ls -p dist/ | grep -v /
+          ls -lp dist/ | grep -v /
   
       - name: Get Release Info
         id: get_release
