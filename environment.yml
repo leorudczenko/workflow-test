@@ -11,10 +11,10 @@ dependencies:
   - sqlite=3.40.1
   - tk=8.6.12
   - tzdata=2022g
-  - vc=14.2
-  - vs2015_runtime=14.27.29016
+  - vc
+  - vs2015_runtime
   - wheel=0.37.1
-  - wincertstore=0.2
+  - wincertstore
   - xz=5.2.10
   - zlib=1.2.13
   - pip:
