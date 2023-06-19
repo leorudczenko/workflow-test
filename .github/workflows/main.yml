@@ -57,8 +57,8 @@ jobs:
           conda env export > macos-environment.yml
 
       - name: Get Latest Release Info
-        id: latest_release_info
-        uses: jossef/action-latest-release-info@v1.2.1
+        id: get_release
+        uses: bruceadams/get-release@v1.3.2
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
@@ -67,7 +67,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          upload_url: ${{ steps.latest_release_info.outputs.upload_url }}
+          upload_url: ${{ steps.get_release.outputs.upload_url }}
           asset_path: macos-environment.yml
           asset_name: macos-environment.yml
           asset_content_type: application
