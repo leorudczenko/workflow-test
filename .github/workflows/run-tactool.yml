@@ -1,11 +1,11 @@
-name: Create Distributable Files TACtool
+name: Run TACtool
 
 on:
   push:
     branches:
       - main
     paths:
-      - ".github/workflows/tactool.yml"
+      - ".github/workflows/run-tactool.yml"
 
 jobs:
   build:
@@ -23,12 +23,8 @@ jobs:
         python-version: 3.11
         auto-activate-base: false
 
-    - name: Build with PyInstaller
+    - name: Run TACtool
       shell: bash -l {0}
-      run: pyinstaller --name=tactool --windowed --paths=./tactool_files/ --onefile tactool_files/tactool/main.py
-
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: tactool-dist-${{ matrix.os }}
-        path: dist
+      run: |
+        export PYTHONPATH=./tactool_files/
+        python tactool_files/tactool/main.py --dev
