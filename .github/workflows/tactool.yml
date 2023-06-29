@@ -11,7 +11,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [windows, macos]
+        os: [macos]
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v3
@@ -25,10 +25,12 @@ jobs:
 
     - name: Build with PyInstaller
       shell: bash -l {0}
-      run: pyinstaller --name=tactool --windowed --paths=./tactool_files/ --onefile tactool_files/tactool/main.py
+      run: |
+        pyinstaller --name=tactool --windowed --paths=./tactool_files/ --onefile tactool_files/tactool/main.py
+        zip -r tactool-macos.zip dist/tactool.app
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: tactool-dist-${{ matrix.os }}
-        path: dist
+        name: tactool-${{ matrix.os }}
+        path: tactool-macos.zip
