@@ -16,22 +16,26 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Activate Anaconda Environment
-      uses: conda-incubator/setup-miniconda@v2
-      with:
-        environment-file: environments/${{ matrix.os }}-environment.yml
-        python-version: 3.11
-        auto-activate-base: false
+    - name: Check OS
+      if: ${{ matrix.os }} == "macos"
+      run: echo ${{ matrix.os }}
 
-    - name: Build with PyInstaller
-      shell: bash -l {0}
-      run: |
-        pyinstaller --name=tactool --windowed --paths=./tactool_files/ --onefile tactool_files/tactool/main.py
-        cd dist
-        zip -r tactool-macos.zip tactool.app
+    # - name: Activate Anaconda Environment
+    #   uses: conda-incubator/setup-miniconda@v2
+    #   with:
+    #     environment-file: environments/${{ matrix.os }}-environment.yml
+    #     python-version: 3.11
+    #     auto-activate-base: false
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: tactool-${{ matrix.os }}.zip
-        path: dist/tactool-macos.zip
+    # - name: Build with PyInstaller
+    #   shell: bash -l {0}
+    #   run: |
+    #     pyinstaller --name=tactool --windowed --paths=./tactool_files/ --onefile tactool_files/tactool/main.py
+    #     cd dist
+    #     zip -r tactool-macos.zip tactool.app
+
+    # - name: Upload Artifact
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: tactool-${{ matrix.os }}.zip
+    #     path: dist/tactool-macos.zip
