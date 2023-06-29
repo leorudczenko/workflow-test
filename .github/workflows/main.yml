@@ -30,13 +30,13 @@ jobs:
     - name: Build with PyInstaller
       shell: bash -l {0}
       run: |
-        pyinstaller --name=${{ matrix.os }}-tactool --windowed --paths=./tactool_files/ --onefile tactool_files/tactool/main.py
+        pyinstaller --name=tactool --windowed --paths=./tactool_files/ --onefile tactool_files/tactool/main.py
     
     - name: ZIP Application
       if: matrix.os == 'macos'
       run: |
         cd dist
-        zip -r ${{ matrix.os }}-${{ matrix.asset_filename }} ${{ matrix.os }}-${{ matrix.app_filename }}
+        zip -r ${{ matrix.asset_filename }} ${{ matrix.app_filename }}
 
     - name: Get Release Info
       id: get_release
@@ -50,6 +50,6 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: dist/${{ matrix.os }}-${{ matrix.asset_filename }}
+        asset_path: dist/${{ matrix.asset_filename }}
         asset_name: ${{ matrix.os }}-${{ matrix.asset_filename }}
         asset_content_type: application
