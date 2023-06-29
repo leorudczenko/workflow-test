@@ -34,25 +34,3 @@ jobs:
       run: |
         export PYTHONPATH=.
         pytest -vs test/
-
-  # test-macos:
-  #   runs-on: macos-latest
-  #   steps:
-  #   - uses: actions/checkout@v3
-
-  #   - name: Create Anaconda Environment
-  #     uses: conda-incubator/setup-miniconda@v2
-  #     with:
-  #       environment-file: macos-environment.yml
-  #       python-version: 3.11
-  #       auto-activate-base: false
-
-  #   - name: Lint
-  #     shell: bash -l {0}
-  #     run: flake8
-
-  #   - name: Test
-  #     shell: bash -l {0}
-  #     run: |
-  #       export PYTHONPATH=.
-  #       pytest -vs test/
