@@ -7,17 +7,12 @@ This is a test repository for GitHub actions, with use of Pyinstaller to create 
 The application is made using PyQt, consisting of a single window. In the window, there is a label and a button. The label can be toggled on and off using the button.
 
 You can download the **Hello World** application here:
-- [Windows](https://github.com/leorudczenko/workflow-test/releases/latest/download/hello-world.exe)
-- [MacOS](https://github.com/leorudczenko/workflow-test/releases/latest/download/hello-world)
+- [Windows](https://github.com/leorudczenko/workflow-test/releases/latest/download/windows-tactool.exe)
+- [MacOS](https://github.com/leorudczenko/workflow-test/releases/latest/download/macos-tactool.zip)
 
 _Note: When first running the application after download, it will take sometime to start. Please be patient._
 
 You can find the executable for the application in the latest release assets.
-
-
-## Artifacts
-
-- [MacOS Dist](https://github.com/leorudczenko/workflow-test/suites/13951421971/artifacts/777345110)
 
 ## Testing
 
