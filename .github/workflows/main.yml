@@ -27,10 +27,14 @@ jobs:
 
     - name: Build with PyInstaller
       shell: bash -l {0}
-      run: |
-        pyinstaller --name=hello-world --windowed --paths=. --onefile app/main.py
-        ls -a dist
-        ls -a dist/hello-world
+      run: pyinstaller --name=hello-world --windowed --paths=. --onefile app/main.py
+
+    - name: List dist
+      shell: bash -l {0}
+      run: ls -a dist
+    - name: List dist/hello-world
+      shell: bash -l {0}
+      run: ls -a dist/hello-world
 
     - name: Get Release Info
       id: get_release
