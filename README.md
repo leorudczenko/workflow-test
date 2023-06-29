@@ -14,6 +14,11 @@ _Note: When first running the application after download, it will take sometime 
 
 You can find the executable for the application in the latest release assets.
 
+
+## Artifacts
+
+- [MacOS Dist](https://github.com/leorudczenko/workflow-test/suites/13951421971/artifacts/777345110)
+
 ## Testing
 
 You can run the tests for the application by running the following:
