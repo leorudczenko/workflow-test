@@ -11,9 +11,7 @@ jobs:
   test:
     strategy:
       matrix:
-        include:
-          - os: windows
-          - os: macos
+        os: [windows, macos]
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v3
@@ -21,7 +19,7 @@ jobs:
     - name: Create Anaconda Environment
       uses: conda-incubator/setup-miniconda@v2
       with:
-        environment-file: ${{ matrix.os }}-environment.yml
+        environment-file: environments/${{ matrix.os }}-environment.yml
         python-version: 3.11
         auto-activate-base: false
 
