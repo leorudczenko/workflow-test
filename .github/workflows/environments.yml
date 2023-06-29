@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - '.github/workflows/environments.yml'
+      - ".github/workflows/environments.yml"
 
 jobs:
   create-environment-file:
