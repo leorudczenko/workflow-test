@@ -33,7 +33,7 @@ jobs:
         pyinstaller --name=tactool --windowed --paths=./tactool_files/ --onefile tactool_files/tactool/main.py
     
     - name: ZIP Application
-      if: ${{ matrix.os }} == "macos"
+      if: matrix.os == 'macos'
       run: |
         cd dist
         zip -r ${{ matrix.os }}-${{ matrix.asset_filename }} ${{ matrix.app_filename }}
