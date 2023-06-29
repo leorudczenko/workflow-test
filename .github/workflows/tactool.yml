@@ -1,9 +1,11 @@
-name: Create Distributable Files
+name: Create Distributable Files TACtool
 
 on:
-  release:
-    types:
-      - released
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/tactool.yml"
 
 jobs:
   build:
@@ -11,9 +13,9 @@ jobs:
       matrix:
         include:
           - os: windows
-            app_filename: "hello-world.exe"
+            app_filename: "tactool.exe"
           - os: macos
-            app_filename: "hello-world"
+            app_filename: "tactool"
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v3
@@ -27,7 +29,7 @@ jobs:
 
     - name: Build with PyInstaller
       shell: bash -l {0}
-      run: pyinstaller --name=hello-world --windowed --paths=. --onefile app/main.py
+      run: pyinstaller --name=tactool --windowed --paths=. --onefile tactool_files/tactool/main.py
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
