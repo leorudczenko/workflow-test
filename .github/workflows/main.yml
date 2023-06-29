@@ -13,7 +13,7 @@ jobs:
           - os: windows
             asset_name: "hello-world.exe"
           - os: macos
-            asset_name: "hello-world.app"
+            asset_name: "hello-world"
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v3
