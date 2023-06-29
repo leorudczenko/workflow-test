@@ -11,9 +11,9 @@ jobs:
       matrix:
         include:
           - os: windows
-            app_filename: "hello-world.exe"
+            app_filename: "tactool.exe"
           - os: macos
-            app_filename: "hello-world.app"
+            app_filename: "tactool.app"
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v3
