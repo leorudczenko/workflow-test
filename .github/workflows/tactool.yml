@@ -27,10 +27,12 @@ jobs:
       shell: bash -l {0}
       run: |
         pyinstaller --name=tactool --windowed --paths=./tactool_files/ --onefile tactool_files/tactool/main.py
-        zip -r tactool-macos.zip dist/tactool.app
+        cd dist
+        zip -r tactool-macos.zip tactool.app
+        cd ..
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: tactool-${{ matrix.os }}
+        name: tactool-${{ matrix.os }}.zip
         path: tactool-macos.zip
