@@ -1,0 +1,43 @@
+name: Generate Environments
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'generate_environments.txt'
+
+jobs:
+  create-environment-file:
+    strategy:
+      matrix:
+        include:
+          - os: windows
+          - os: macos
+    runs-on: ${{ matrix.os }}-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create Anaconda Environment
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: tactool-${{ matrix.os }}
+          python-version: 3.11
+          auto-activate-base: false
+      - name: Install packages
+        shell: bash -l {0}
+        run: |
+          pip install pyinstaller pyqt5 pytest flake8
+          conda env export > generated_environments/${{ matrix.os }}-environment.yml
+      - name: Get Latest Release Info
+        id: get_release
+        uses: bruceadams/get-release@v1.3.2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Add Asset to Latest Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.get_release.outputs.upload_url }}
+          asset_path: generated_environments/${{ matrix.os }}-environment.yml
+          asset_name: generated_environments/${{ matrix.os }}-environment.yml
