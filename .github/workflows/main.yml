@@ -13,7 +13,7 @@ jobs:
           - os: windows
             app_filename: "hello-world.exe"
           - os: macos
-            app_filename: "hello-world"
+            app_filename: "hello-world.app"
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v3
@@ -27,7 +27,10 @@ jobs:
 
     - name: Build with PyInstaller
       shell: bash -l {0}
-      run: pyinstaller --name=hello-world --windowed --paths=. --onefile app/main.py
+      run: |
+        pyinstaller --name=tactool --windowed --paths=./tactool_files/ --onefile tactool_files/tactool/main.py
+        cd dist
+        zip -r ${{ matrix.os }}-tactool.zip ${{ matrix.app_filename }}
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
@@ -47,6 +50,6 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: dist/${{ matrix.app_filename }}
-        asset_name: ${{ matrix.os }}_${{ matrix.app_filename }}
+        asset_path: dist/${{ matrix.os }}-tactool.zip
+        asset_name: ${{ matrix.os }}-tactool.zip
         asset_content_type: application
