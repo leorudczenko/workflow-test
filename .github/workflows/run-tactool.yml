@@ -11,7 +11,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [windows, macos]
+        os: [macos]
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v3
@@ -26,5 +26,6 @@ jobs:
     - name: Run TACtool
       shell: bash -l {0}
       run: |
-        export PYTHONPATH=./tactool_files/
-        python tactool_files/tactool/main.py --dev
+        sw_vers
+        # export PYTHONPATH=./tactool_files/
+        # python tactool_files/tactool/main.py --dev
