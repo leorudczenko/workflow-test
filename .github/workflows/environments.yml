@@ -16,7 +16,7 @@ jobs:
           - os: macos
     runs-on: ${{ matrix.os }}-latest
     steps:
-    #   - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
     #   - name: Create Anaconda Environment
     #     uses: conda-incubator/setup-miniconda@v2
     #     with:
