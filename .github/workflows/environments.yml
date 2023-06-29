@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'generate_environments.txt'
+      - '.github/workflows/environments.yml'
 
 jobs:
   create-environment-file:
@@ -27,6 +27,7 @@ jobs:
         shell: bash -l {0}
         run: |
           pip install pyinstaller pyqt5 pytest flake8
+          mkdir generated_environments
           conda env export > generated_environments/${{ matrix.os }}-environment.yml
       - name: Get Latest Release Info
         id: get_release
