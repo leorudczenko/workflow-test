@@ -12,8 +12,10 @@ jobs:
         include:
           - os: windows
             app_filename: "tactool.exe"
+            asset_filename: "tactool.exe"
           - os: macos
             app_filename: "tactool.app"
+            asset_filename: "tactool.zip"
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v3
@@ -29,14 +31,12 @@ jobs:
       shell: bash -l {0}
       run: |
         pyinstaller --name=tactool --windowed --paths=./tactool_files/ --onefile tactool_files/tactool/main.py
+    
+    - name: ZIP Application
+      if: ${{ matrix.os }} == "macos"
+      run: |
         cd dist
-        zip -r ${{ matrix.os }}-tactool.zip ${{ matrix.app_filename }}
-
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: dist-${{ matrix.os }}
-        path: dist
+        zip -r ${{ matrix.os }}-${{ matrix.asset_filename }} ${{ matrix.app_filename }}
 
     - name: Get Release Info
       id: get_release
@@ -50,6 +50,6 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: dist/${{ matrix.os }}-tactool.zip
-        asset_name: ${{ matrix.os }}-tactool.zip
+        asset_path: dist/${{ matrix.os }}-${{ matrix.asset_filename }}
+        asset_name: ${{ matrix.os }}-${{ matrix.asset_filename }}
         asset_content_type: application
