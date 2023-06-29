@@ -17,7 +17,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: list files
       shell: bash -l {0}
-      run: ls -a workflow-test/
+      run: ls -a
 
     - name: Create Anaconda Environment
       uses: conda-incubator/setup-miniconda@v2

@@ -25,7 +25,7 @@ class Window(QMainWindow):
     def __init__(self):
         super().__init__()
         self.label_hide = True
-        self.default_message = "Halloo World!"
+        self.default_message = "Hallo World!"
         self.setWindowTitle("Hallo World")
         self.setup_widgets()
 
