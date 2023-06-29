@@ -29,10 +29,10 @@ jobs:
 
     - name: Build with PyInstaller
       shell: bash -l {0}
-      run: pyinstaller --name=tactool --windowed --paths=. --onefile tactool_files/tactool/main.py
+      run: pyinstaller --name=tactool --windowed --paths=./tactool_files/ --onefile tactool_files/tactool/main.py
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: dist-${{ matrix.os }}
+        name: tactool-dist-${{ matrix.os }}
         path: dist
