@@ -24,9 +24,11 @@ jobs:
           python-version: 3.11
           auto-activate-base: false
       - name: Install Packages
+        shell: bash -l {0}
         run: |
           pip install pyinstaller pyqt5 pytest flake8
       - name: Create Environment File
+        shell: bash -l {0}
         run: |
           mkdir generated_environments
           conda env export > generated_environments/${{ matrix.os }}-environment.yml
