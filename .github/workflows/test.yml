@@ -15,11 +15,8 @@ jobs:
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v3
-    - name: list files
-      shell: bash -l {0}
-      run: ls -a
 
-    - name: Create Anaconda Environment
+    - name: Activate Anaconda Environment
       uses: conda-incubator/setup-miniconda@v2
       with:
         environment-file: environments/${{ matrix.os }}-environment.yml
