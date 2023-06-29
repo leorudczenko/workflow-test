@@ -11,9 +11,9 @@ jobs:
       matrix:
         include:
           - os: windows
-            app_filename: hello-world.exe
-          - os: macos
-            app-filename: hello-world
+            app_filename: "hello-world.exe"
+          # - os: macos
+          #   app-filename: hello-world
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v3
