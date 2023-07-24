@@ -25,6 +25,7 @@ jobs:
         shell: bash -l {0}
         run: |
           pip install pyinstaller pyqt5 pytest flake8
+          conda install numpy
       - name: Create Environment File
         shell: bash -l {0}
         run: |
