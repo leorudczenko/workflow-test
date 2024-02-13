@@ -23,9 +23,8 @@ jobs:
           auto-activate-base: false
       - name: Install Packages
         shell: bash -l {0}
-        run: |
-          pip install pyinstaller pyqt5 pytest flake8
-          conda install numpy
+        # Update the existing environment with the given YAML file, prune removes packages not in YAML
+        run: conda env update -f environments/unversioned-environment.yml --prune
       - name: Create Environment File
         shell: bash -l {0}
         run: |
