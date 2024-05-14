@@ -1,0 +1,17 @@
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Specifying the build for blas to reduce compiled exe file size based on the following discussions:
+  # https://stackoverflow.com/questions/47769904/size-of-executable-using-pyinstaller-and-numpy
+  # https://github.com/conda-forge/numpy-feedstock/issues/108#issuecomment-428749055
+  - python=3.12
+  - blas[build=openblas]
+  - numpy
+  - pip
+  - pip:
+      - pyinstaller
+      - pyqt5
+      - pytest
+      - flake8
+      - tifffile

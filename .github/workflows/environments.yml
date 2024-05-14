@@ -19,13 +19,13 @@ jobs:
       - name: Create Anaconda Environment
         uses: conda-incubator/setup-miniconda@v2
         with:
-          activate-environment: tactool-${{ matrix.os }}
-          python-version: 3.11
+          activate-environment: tiff-converter-${{ matrix.os }}
+          python-version: 3.12
           auto-activate-base: false
       - name: Install Packages
         shell: bash -l {0}
         # Update the existing environment with the given YAML file, prune removes packages not in YAML
-        run: conda env update -f environments/unversioned-environment.yml --prune
+        run: conda env update -f environments/tiff-converter/unversioned-environment.yml --prune
       - name: Create Environment File
         shell: bash -l {0}
         run: |
@@ -35,4 +35,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: environment-files
-          path: generated_environments/${{ matrix.os }}-environment.yml
+          path: "generated_environments/${{ matrix.os }}-environment.yml"
