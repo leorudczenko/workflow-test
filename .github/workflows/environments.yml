@@ -19,6 +19,7 @@ jobs:
       - name: Create Anaconda Environment
         uses: conda-incubator/setup-miniconda@v2
         with:
+          miniconda-version: "latest"
           activate-environment: tiff-converter-${{ matrix.os }}
           python-version: 3.12
           auto-activate-base: false
