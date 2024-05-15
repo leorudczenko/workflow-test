@@ -10,7 +10,8 @@ dependencies:
   - numpy
   - pip
   - pip:
-      - pyinstaller
+      # Using an older version of pyinstaller due to this error: https://stackoverflow.com/questions/77239487/win32ctypes-pywin32-pywintypes-error-when-using-pyinstaller-in-vs-code-possib
+      - pyinstaller=5
       - pyqt5
       - pytest
       - flake8
