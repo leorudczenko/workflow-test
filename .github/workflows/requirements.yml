@@ -27,13 +27,13 @@ jobs:
 
     - name: Compile requirements
       run: |
-        pip-compile requirements/tiff-converter/requirements.in --output-file requirements/tiff-converter/${{ matrix.os }}-requirements.txt
-        pip-compile requirements/tiff-converter/requirements_dev.in --output-file requirements/tiff-converter/${{ matrix.os }}-requirements_dev.txt
+        pip-compile requirements/tiff-converter/${{ matrix.os }}_requirements.in --output-file requirements/tiff-converter/${{ matrix.os }}_requirements.txt
+        pip-compile requirements/tiff-converter/${{ matrix.os }}_requirements_dev.in --output-file requirements/tiff-converter/${{ matrix.os }}_requirements_dev.txt
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
         name: requirements-files
         path: |
-          requirements/tiff-converter/${{ matrix.os }}-requirements.txt
-          requirements/tiff-converter/${{ matrix.os }}-requirements_dev.txt
+          requirements/tiff-converter/${{ matrix.os }}_requirements.txt
+          requirements/tiff-converter/${{ matrix.os }}_requirements_dev.txt
