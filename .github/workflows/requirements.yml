@@ -13,6 +13,7 @@ jobs:
     strategy:
       matrix:
         os: [windows, macos]
+        project: tiff-converter
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v3
@@ -27,14 +28,13 @@ jobs:
 
     - name: Compile requirements
       run: |
-        mkdir requirements/${{ matrix.os }}/
-        pip-compile requirements/tiff-converter/requirements.in --output-file requirements/${{ matrix.os }}/requirements.txt
-        pip-compile requirements/tiff-converter/requirements_dev.in --output-file requirements/${{ matrix.os }}/requirements_dev.txt
+        mkdir tmp/requirements/${{ matrix.os }}/
+        cp requirements/${{ matrix.project }}/*.in tmp/requirements/
+        pip-compile requirements/${{ matrix.project }}/requirements.in --output-file tmp/requirements/${{ matrix.os }}/requirements.txt
+        pip-compile requirements/${{ matrix.project }}/requirements_dev.in --output-file tmp/requirements/${{ matrix.os }}/requirements_dev.txt
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
         name: requirements-files
-        path: |
-          requirements/${{ matrix.os }}/requirements.txt
-          requirements/${{ matrix.os }}/requirements_dev.txt
+        path: tmp/requirements/
