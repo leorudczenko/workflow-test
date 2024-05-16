@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         os: [windows, macos]
-        project: tiff-converter
+        project: [tiff-converter]
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: actions/checkout@v3
